@@ -12,6 +12,7 @@ frequency=(0:length(furier)-1)*50/(length(furier)-1);
 
 %%Plotting spectrum
 plot(frequency(1:25),module(1:25,1));
+xlabel('Frequency, Hz');ylabel('Intensity');
 
 
 %%Calculating eigen frequency
