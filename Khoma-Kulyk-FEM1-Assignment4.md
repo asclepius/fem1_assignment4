@@ -71,6 +71,7 @@ The other thing is that we are using MATLAB function fft() which represents Fast
 This is very efficient algorithm to compute discrete Fourier transform. 
 However, this type of Fourier transform of course produces further errors, which also influences results.
 Some other effects of discretization come in to play here, see discussion.
+The mesh quality also plays a significant role on this method as the fine mesh is the only one that appears to give an accurate result.
 
 
 # Discussion
@@ -86,6 +87,7 @@ see the effects of shear locking or hourglassing in this mode.
 
 
 With the impulse based method we find inaccuracy for a few reasons.  It is discretizing the impulse data in the first place.  This gives us only n time samples to work with.  Once this is run through the fast Fourier transform algorithm in Matlab we then only get n discrete frequency samples out. Therefore our accuracy can only ever be expected to be as high as the difference between adjacent frequency samples.  So our fine mesh approximation is actually not that bad in this case.  As can be seen in figure \ref{finefft} it is within 1 frequency step from the expected theoretical value.  Improving the sampling in time space would yield better results, however this method is computationally expected.
+The mesh quality plays a significant role in this method.  In general a finer mesh will yield a better results, but in this case it has a drastic effect.  Additionally, it utilizes linear elements which we determines were less accurate previously.  These effects are compounded by the error from the frequency step after the FFT as discussed above.
 
 
 For finding the eigenfrequency of simple beams, we find that Abaqus
