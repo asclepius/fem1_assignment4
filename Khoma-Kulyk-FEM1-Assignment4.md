@@ -3,7 +3,7 @@ title: FEM1 Assignment 4, Resonance frequency
 author:
     - Paul Kulyk
     - Oleksiy Khoma
-date: April 24, 2017
+date: May 1, 2017
 ---
 
 \maketitle
@@ -22,10 +22,7 @@ For our frequency mode simulation we created three models with different size of
 
 ![Medium mesh, approximal size of seed 0.001](Results/quad_full_medium_mesh.png)
 
-![Fine mesh, approximal size of seed 0.001](Results\quad_full_fine_mesh.png)
-
-Also, for this mode we tried different types of integration: linear full and reduced, as well as quadratic full and reduced.
-By this we wanted to see the influence of mesh AND type of integration.
+![Fine mesh, approximal size of seed 0.001](Results/quad_full_fine_mesh.png)
 
 Also, for this mode we tried different types of integration: linear full and reduced, as well as quadratic full and reduced.
 By this we wanted to see the influence of mesh AND type of integration.
@@ -37,38 +34,59 @@ For this mode, our results could be organised like this:
 | Medium               | -              | 22.361      | 21.455            | 21.455         |
 | Fine                 | 21.020         | 21.661      | 21.453            | 21.453         |
 
-From this, it can clearly be seen that generaly, we get quite close results. For this mode, making the size of mesh smaller, does not really influence the final result.
-However, the method of integration definitely changes it. Nevertheless, we would choose quatratic method without doubt and reduced integration to reduce time needed for simulation.
-
+These methods yield relatively accurate results. For this mode making the size of mesh smaller does not influence the final result.
+However, the method of integration definitely changes it.   The optimal method for computation of a more complex problem would be quadratic elements with reduced integration. (See Discussion).
 
 # Impulse based analysis
 
-To  have a clear comparison of different modes, we decided to use the same three meshes as for frequency mode.
+To have a clear comparison of different modes, we decided to use the same three meshes as for frequency mode.
 The obvious disadvantage of this method which we expectedly faced, is the time of simulation.
-For the fine mesh, simulation takes approximately 5 minutes, which is absolutely unexeptable for this type of problems.
+For the fine mesh, simulation takes approximately 5 minutes, which is unacceptable for this type of problems.
 
-![Robust mesh, approximal size of seed 0.005](Results\explicit_linear_robust_mesh.png)    ![Spectrum for robust mesh](Results\explicit_linear_robust.jpg)
+The meshes used for the impulse based analysis are show in figures \ref{robustmesh}, \ref{mediummesh}, and \ref{finemesh}
 
-![Medium mesh, approximal size of seed 0.001](Results\explicit_linear_medium_mesh.png)     ![Spectrum for medium mesh](Results\explicit_linear_medium.jpg)
+![Robust mesh, approximal size of seed 0.005\label{robustmesh}](Results/explicit_linear_robust_mesh.png)    
 
-![Fine mesh, approximal size of seed 0.001](Results\explicit_linear_fine_mesh.png)      ![Spectrum for fine mesh](Results\explicit_linear_fine.jpg)
+![Medium mesh, approximal size of seed 0.001\label{mediummesh}](Results/explicit_linear_medium_mesh.png)     
+
+![Fine mesh, approximal size of seed 0.001\label{finemesh}](Results/explicit_linear_fine_mesh.png)      
+
+The results of the FFT in matlab are show in figures \ref{robustfft},\ref{mediumfft}, and \ref{finefft} with the expected value drawn in a red dashed line.
+
+![Spectrum for robust mesh\label{robustfft}](Results/explicit_linear_robust.jpg)
+
+![Spectrum for medium mesh\label{mediumfft}](Results/explicit_linear_medium.jpg)
+
+![Spectrum for fine mesh\label{finefft}](Results/explicit_linear_fine.jpg)
 
 
-|Size of mesh:|Robsut|Medium|Fine|
-|----|----|----|----|
-| |19|19|21|
+| Size of mesh: | Robust | Medium | Fine |
+|---------------|--------|--------|------|
+| Result:       | 19     | 19     | 21   |
 
-The other disadvantage is that we get quite unprecise results.
-This conclusion could be explained by two effects, which basicaly are connected with each other. 
-First of all, we use quite a finite time step, for our simulation, which creates step like oscilation graph. 
+The other disadvantage is that we get less accurate results.
+This conclusion could be explained by two effects, which are connected with each other. 
+First of all, we use quite a finite time step, for our simulation, which creates step like oscillation graph. 
 The other thing is that we are using MATLAB function fft() which represents Fast Fourier Transform. 
-One can find that this is very efficient type to compute discrete fourier transform. 
-However, this type of fourier transform of course produces rounding errors, which also influences results heavily.
+This is very efficient algorithm to compute discrete Fourier transform. 
+However, this type of Fourier transform of course produces further errors, which also influences results.
+Some other effects of discretization come in to play here, see discussion.
 
 
-# Conclusions
+# Discussion
 
-For finding the eigenfrequncy of simple beams, we can clearly say, that Abaqus frequency mode is definitely prefered.
-It is faster, it gives better results, and it is not so mesh depended as explicit method.
-To achieve results as close as possible to theoretically calculated, of course finer meshes are prefered.
-However, in case of problems which might consume more time with fine meshes, more robust could be used.
+
+A few conclusions can be drawn from the above. We discussed that the optimal
+elements in frequency based analysis are quadratic with reduced integration.
+We know that quadratic elements typically are more accurate (except in special
+cases), and we get nearly equivalent results with full integration for a more
+expensive computation.  This makes sense as we have a bending beam with no
+special restrictions that would draw a benefit from linear elements.  We do not
+see the effects of shear locking or hourglassing in this mode. 
+
+
+With the impulse based method we find inaccuracy for a few reasons.  It is discretizing the impulse data in the first place.  This gives us only n time samples to work with.  Once this is run through the fast Fourier transform algorithm in Matlab we then only get n discrete frequency samples out. Therefore our accuracy can only ever be expected to be as high as the difference between adjacent frequency samples.  So our fine mesh approximation is actually not that bad in this case.  As can be seen in figure \ref{finefft} it is within 1 frequency step from the expected theoretical value.  Improving the sampling in time space would yield better results, however this method is computationally expected.
+
+
+For finding the eigenfrequency of simple beams, we find that Abaqus
+frequency mode is preferred. It is faster, it gives better results, and it is not so mesh depended as explicit method. To achieve results as close as possible to theoretically  calculated, of course finer meshes are preferred. However, in case of problems which might consume more time with fine meshes, a more robust could be used.
