@@ -3,7 +3,7 @@ title: FEM1 Assignment 4, Resonance frequency
 author:
     - Paul Kulyk
     - Oleksiy Khoma
-date: April 10, 2017
+date: April 24, 2017
 ---
 
 \maketitle
@@ -18,11 +18,11 @@ $$\frac{1}{2\pi\sqrt{12}}\alpha_0^2\sqrt{\frac{E}{\rho}}\frac{h}{L^2}\approx21.4
 
 For our frequency mode simulation we created three models with different size of meshes:
 
-![Robust mesh, approximal size of seed 0.005](\fem1_assignment4\Results\quad_full_robust_mesh.png)
+![Robust mesh, approximal size of seed 0.005](Results\quad_full_robust_mesh.png)
 
-![Medium mesh, approximal size of seed 0.001](\fem1_assignment4\Results\quad_full_medium_mesh.png)
+![Medium mesh, approximal size of seed 0.001](Results\quad_full_medium_mesh.png)
 
-![Medium mesh, approximal size of seed 0.001](\fem1_assignment4\Results\quad_full_medium_mesh.png)
+![Medium mesh, approximal size of seed 0.001](Results\quad_full_medium_mesh.png)
 
 Also, for this mode we tried different types of integration: linear full and reduced, as well as quadratic full and reduced.
 By this we wanted to see the influence of mesh AND type of integration.
@@ -45,11 +45,11 @@ To  have a clear comparison of different modes, we decided to use the same three
 The obvious disadvantage of this method which we expectedly faced, is the time of simulation.
 For the fine mesh, simulation takes approximately 5 minutes, which is absolutely unexeptable for this type of problems.
 
-![Robust mesh, approximal size of seed 0.005](\fem1_assignment4\Results\explicit_linear_robust_mesh.png) ![Spectrum for robust mesh](\fem1_assignment4\Results\explicit_linear_robust.jpg)
+![Robust mesh, approximal size of seed 0.005](Results\explicit_linear_robust_mesh.png)    ![Spectrum for robust mesh](Results\explicit_linear_robust.jpg)
 
-![Medium mesh, approximal size of seed 0.001](\fem1_assignment4\Results\explicit_medium_mesh.png) ![Spectrum for medium mesh](\fem1_assignment4\Results\explicit_linear_medium.jpg)
+![Medium mesh, approximal size of seed 0.001](Results\explicit_linear_medium_mesh.png)     ![Spectrum for medium mesh](Results\explicit_linear_medium.jpg)
 
-![Medium mesh, approximal size of seed 0.001](\fem1_assignment4\Results\explicit_medium_mesh.png) ![Spectrum for fine mesh](\fem1_assignment4\Results\explicit_linear_fine.jpg)
+![Fine mesh, approximal size of seed 0.001](Results\explicit_linear_fine_mesh.png)      ![Spectrum for fine mesh](Results\explicit_linear_fine.jpg)
 
 
 |Size of mesh:|Robsut|Medium|Fine|
