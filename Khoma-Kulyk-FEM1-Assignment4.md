@@ -57,7 +57,16 @@ For the fine mesh, simulation takes approximately 5 minutes, which is absolutely
 | |19|19|21|
 
 The other disadvantage is that we get quite unprecise results.
-This conclusion could be explained by two effects, which basicaly are connected with each other.
-First of all, we use quite a finite time step, for our simulation, which creates step like oscilation graph.
-The other thing is that we are using MATLAB function fft() which represents Fast Fourier Transform.
-One can find that this is very efficient type to compute
+This conclusion could be explained by two effects, which basicaly are connected with each other. 
+First of all, we use quite a finite time step, for our simulation, which creates step like oscilation graph. 
+The other thing is that we are using MATLAB function fft() which represents Fast Fourier Transform. 
+One can find that this is very efficient type to compute discrete fourier transform. 
+However, this type of fourier transform of course produces rounding errors, which also influences results heavily.
+
+
+#Conclusions
+
+For finding the eigenfrequncy of simple beams, we can clearly say, that Abaqus frequency mode is definitely prefered.
+It is faster, it gives better results, and it is not so mesh depended as explicit method.
+To achieve results as close as possible to theoretically calculated, of course finer meshes are prefered.
+However, in case of problems which might consume more time with fine meshes, more robust could be used.
