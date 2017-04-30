@@ -8,38 +8,37 @@ date: April 24, 2017
 
 \maketitle
 
-#Theoretical resonance frequency
+# Theoretical resonance frequency
 
 According to the assignment, we had to define first resonance frequency for our beam. Thus, we had to consider coefficient $\alpha_0=1.875.$
 And according to the formula for a resonance frequency we calculated:
 $$\frac{1}{2\pi\sqrt{12}}\alpha_0^2\sqrt{\frac{E}{\rho}}\frac{h}{L^2}\approx21.4507...$$
 
-#Frequency mode
+# Frequency mode
 
 For our frequency mode simulation we created three models with different size of meshes:
 
-![Robust mesh, approximal size of seed 0.005](Results\quad_full_robust_mesh.png)
+![Robust mesh, approximal size of seed 0.005](Results/quad_full_robust_mesh.png)
 
-![Medium mesh, approximal size of seed 0.001](Results\quad_full_medium_mesh.png)
+![Medium mesh, approximal size of seed 0.001](Results/quad_full_medium_mesh.png)
 
-![Medium mesh, approximal size of seed 0.001](Results\quad_full_medium_mesh.png)
+![Medium mesh, approximal size of seed 0.001](Results/quad_full_medium_mesh.png)
 
 Also, for this mode we tried different types of integration: linear full and reduced, as well as quadratic full and reduced.
 By this we wanted to see the influence of mesh AND type of integration.
 For this mode, our results could be organised like this:
 
-|Type of integration:|Linear reduced|Linear full|Quadratic reduced|Quadratic full|
-|----|----|----|----|----|
-|Size of mesh:| | | | |
-|Robsut| - | - |21.463|21.472|
-|Medium| - |22.361|21.455|21.455|
-|Fine|21.020|21.661|21.453|21.453|
+| Mesh                 | Linear reduced | Linear full | Quadratic reduced | Quadratic full |
+|----------------------|----------------|-------------|-------------------|----------------|
+| Robust               | -              | -           | 21.463            | 21.472         |
+| Medium               | -              | 22.361      | 21.455            | 21.455         |
+| Fine                 | 21.020         | 21.661      | 21.453            | 21.453         |
 
 From this, it can clearly be seen that generaly, we get quite close results. For this mode, making the size of mesh smaller, does not really influence the final result.
 However, the method of integration definitely changes it. Nevertheless, we would choose quatratic method without doubt and reduced integration to reduce time needed for simulation.
 
 
-#Impulse based analysis
+# Impulse based analysis
 
 To  have a clear comparison of different modes, we decided to use the same three meshes as for frequency mode.
 The obvious disadvantage of this method which we expectedly faced, is the time of simulation.
@@ -64,7 +63,7 @@ One can find that this is very efficient type to compute discrete fourier transf
 However, this type of fourier transform of course produces rounding errors, which also influences results heavily.
 
 
-#Conclusions
+# Conclusions
 
 For finding the eigenfrequncy of simple beams, we can clearly say, that Abaqus frequency mode is definitely prefered.
 It is faster, it gives better results, and it is not so mesh depended as explicit method.
