@@ -22,7 +22,7 @@ For our frequency mode simulation we created three models with different size of
 
 ![Medium mesh, approximal size of seed 0.001](Results\quad_full_medium_mesh.png)
 
-![Medium mesh, approximal size of seed 0.001](Results\quad_full_medium_mesh.png)
+![Fine mesh, approximal size of seed 0.001](Results\quad_full_fine_mesh.png)
 
 Also, for this mode we tried different types of integration: linear full and reduced, as well as quadratic full and reduced.
 By this we wanted to see the influence of mesh AND type of integration.
